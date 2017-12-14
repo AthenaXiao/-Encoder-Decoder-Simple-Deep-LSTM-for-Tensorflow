@@ -1,0 +1,54 @@
+README for Seq2Seq.
+
+Purpose of script:
+To build a simple sequence-to-sequence language model for Neural Machine Translation.
+
+Architecture:
+Stacked Encoder/Decoder LSTM Network.
+
+Dependencies:
+You must have the following libraries installed on your machine:
+TensorFlow
+NumPy
+TensorBoard
+Python 2.7
+
+Default Settings:
+batch_size = 8
+num_epochs = infinite
+state_size = 128
+number_of_layers = 3
+encoder_layers = number_of_layers
+decoder_layers = number_of_layers
+learning_rate = 0.001
+embedding_size = 128
+
+Default Corpus: europarl-v7.en/de - The network will build a model to translate German to English.
+Secondary Corpus: pos/neg.txt - A set of positive/negative sentence usually used for sentiment analysis.  You can use this smaller dataset to prove the concept of Machine Translation much more quickly than the Default Corpus - however, will be useless for testing.
+
+Recommendations:
+To run the data set with the following configuration, I recommend your system has at least 16GB RAM installed.
+
+If your system has less than this, tweak the the hyper-parameters to reduce memory.
+
+Customizing Settings:
+Edit the nn_config.py script to values of your choosing.
+
+The above values have yeilded strong results when translating the default corpus integrated within 'data_files/input' and 'data_files/output' directories of this project.
+
+Usage instructions:
+
+Once you have cloned the repository, run the 'lstm_seq_to_seq.py' script through Terminal prompt.
+
+To do this, use the 'cd' within Terminal and navigate to your local copy of this repository.
+
+Run 'python lstm_encoder_decoder.py'
+
+Currently the script will only train and save the model.  An output of the network (in the target language) will be generated and shown to command line or 'data_files/training/encoder-decoder-output' every 5 batches.
+
+The previous 30 models will be saved every epoch in 'data_files/training/saved_models' - if you need to restart training, you can change the 'restore' variable from nn_config.py from 'False' to 'True' and change 'meta_num' to the most recently produced model.
+
+NOTE: 'meta_num' should not necessarily be the highest number - the count will reset every time training is restarted. View the 'checkpoint' file in data_files/training/saved_models to check most recent model number created!
+
+WARNING: Training the model WILL take a long time - weeks on slower systems.
+
